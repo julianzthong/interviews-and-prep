@@ -7,7 +7,6 @@ This repository contains a collection of coding interview practice projects and 
 - `collate-prep/`
 - `CSharpWorkshop/`
 - `go-workshop/`
-- `health-chat-bot-demo/`
 - `homelight_mock_interview/`
 - `levelpath-assessment/`
 - `liveflow/`
