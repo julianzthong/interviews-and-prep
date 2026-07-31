@@ -13,6 +13,17 @@ publish/
 *.log
 *.vs/
 
+# Ignore NuGet packages and build artifacts
+*.nupkg
+packages/
+*.dll
+*.exe
+*.runtimeconfig.json
+*.deps.json
+
+# Rider/IDE
+*.sln.iml
+
 # Packages
 *.nupkg
 packages/
