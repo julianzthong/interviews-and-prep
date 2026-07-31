@@ -1,0 +1,25 @@
+# Build output
+bin/
+obj/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.pdb
+*.log
+*.vs/
+
+# Packages
+*.nupkg
+packages/
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

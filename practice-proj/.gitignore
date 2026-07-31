@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

@@ -1,0 +1,19 @@
+# Build output
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Vendored dependencies
+vendor/
+Godeps/
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
