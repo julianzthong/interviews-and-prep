@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "gK+TAhz6tpE=",
+  "success": true,
+  "projectFilePath": "/Users/julianzthong/code/interviews-and-prep/practice-proj/practice-proj.csproj",
+  "expectedPackageFiles": [
+    "/Users/julianzthong/.nuget/packages/microsoft.entityframeworkcore/10.0.1/microsoft.entityframeworkcore.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.1/microsoft.entityframeworkcore.abstractions.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.1/microsoft.entityframeworkcore.analyzers.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.1/microsoft.extensions.caching.abstractions.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.caching.memory/10.0.1/microsoft.extensions.caching.memory.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.1/microsoft.extensions.dependencyinjection.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.1/microsoft.extensions.dependencyinjection.abstractions.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.logging/10.0.1/microsoft.extensions.logging.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.1/microsoft.extensions.logging.abstractions.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.options/10.0.1/microsoft.extensions.options.10.0.1.nupkg.sha512",
+    "/Users/julianzthong/.nuget/packages/microsoft.extensions.primitives/10.0.1/microsoft.extensions.primitives.10.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

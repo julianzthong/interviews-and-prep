@@ -1,0 +1,65 @@
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='HomelightPractice'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-06-25 03:55:40.239572', '2026-06-25 03:55:40.239574') RETURNING "key" /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m
+Migrating to CreateAgents (20260625035514)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "agents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "accepting_leads" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260625035514') RETURNING "version" /*application='HomelightPractice'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='HomelightPractice'*/[0m
+Migrating to CreateLeads (20260625035520)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "leads" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "zip_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260625035520') RETURNING "version" /*application='HomelightPractice'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m
+Migrating to AddAgentToLeads (20260625040745)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='HomelightPractice'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aleads" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "zip_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aleads" ("id","zip_code","created_at","updated_at")
+                     SELECT "id","zip_code","created_at","updated_at" FROM "leads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "leads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "leads" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "zip_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "agent_id" integer NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "leads" ("id","zip_code","created_at","updated_at")
+                     SELECT "id","zip_code","created_at","updated_at" FROM "aleads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aleads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_leads_on_agent_id" ON "leads" ("agent_id") /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aleads" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "zip_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "agent_id" integer NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aleads_on_agent_id" ON "aleads" ("agent_id") /*application='HomelightPractice'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aleads" ("id","zip_code","created_at","updated_at","agent_id")
+                     SELECT "id","zip_code","created_at","updated_at","agent_id" FROM "leads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "leads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "leads" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "zip_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "agent_id" integer NOT NULL, CONSTRAINT "fk_rails_58d23c1fa4"
+FOREIGN KEY ("agent_id")
+  REFERENCES "agents" ("id")
+) /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_leads_on_agent_id" ON "leads" ("agent_id") /*application='HomelightPractice'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "leads" ("id","zip_code","created_at","updated_at","agent_id")
+                     SELECT "id","zip_code","created_at","updated_at","agent_id" FROM "aleads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE "aleads" /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='HomelightPractice'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260625040745') RETURNING "version" /*application='HomelightPractice'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m
+Migrating to CreateUsers (20260625173646)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "role" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260625173646') RETURNING "version" /*application='HomelightPractice'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='HomelightPractice'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HomelightPractice'*/[0m

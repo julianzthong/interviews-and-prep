@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: leads
+#
+#  id         :integer          not null, primary key
+#  zip_code   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  agent_id   :integer          not null
+#
+# Indexes
+#
+#  index_leads_on_agent_id  (agent_id)
+#
+# Foreign Keys
+#
+#  agent_id  (agent_id => agents.id)
+#
+one:
+  zip_code: MyString
+
+two:
+  zip_code: MyString
