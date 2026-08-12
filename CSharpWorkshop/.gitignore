@@ -29,7 +29,6 @@ packages/
 packages/
 
 # OS and editors
-.DS_Store
 .idea/
 .vscode/
 *.swp
