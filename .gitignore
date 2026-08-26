@@ -26,6 +26,7 @@ pnpm-debug.log*
 .bundle
 /vendor/bundle
 .env*
+!.env.example
 .byebug_history
 
 # .NET
