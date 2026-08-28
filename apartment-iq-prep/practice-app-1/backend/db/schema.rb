@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_26_215055) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_26_223248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,9 +21,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_26_215055) do
     t.integer "bedrooms", null: false
     t.string "city", null: false
     t.datetime "created_at", null: false
+    t.string "external_id"
     t.datetime "listed_at"
     t.jsonb "raw_data", default: {}, null: false
     t.decimal "rent", precision: 10, scale: 2, null: false
+    t.string "source"
     t.integer "square_feet"
     t.string "state", null: false
     t.string "unit"
@@ -31,6 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_26_215055) do
     t.string "zip_code", null: false
     t.index ["available"], name: "index_properties_on_available"
     t.index ["city"], name: "index_properties_on_city"
+    t.index ["source", "external_id"], name: "index_properties_on_source_and_external_id", unique: true
     t.index ["zip_code"], name: "index_properties_on_zip_code"
   end
 end

@@ -55,6 +55,11 @@ module RentalDataClients
 
     attr_reader :timeout, :open_timeout
 
+    # NOTE: when base_url has a path component (e.g. ".../hudapi/public/fmr"),
+    # request paths passed to connection.get/post must NOT start with "/" -
+    # a leading slash makes Faraday's URI join replace the whole path instead
+    # of appending to it, silently dropping everything after the host.
+    # Use connection.get("data/#{id}"), not connection.get("/data/#{id}").
     def connection
       @connection ||= Faraday.new(url: self.class.base_url) do |conn|
         conn.request :retry, max: 2, interval: 0.5, backoff_factor: 2

@@ -13,3 +13,19 @@ production:
   clear_solid_queue_finished_jobs:
     command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
     schedule: every hour at minute 12
+
+  fake_rental_data_import:
+    class: RentalDataClients::ImportFakeJob
+    schedule: every day at 3am
+
+  # entity_id below is a placeholder FMR area code - swap for a real one, and
+  # set HUD_FMR_API_KEY, before this does anything useful.
+  hud_fmr_rental_data_import:
+    class: RentalDataClients::ImportHudFmrJob
+    args: [ "1600037" ]
+    schedule: every day at 3am
+
+development:
+  fake_rental_data_import:
+    class: RentalDataClients::ImportFakeJob
+    schedule: every day at 3am
