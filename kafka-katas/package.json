@@ -1,0 +1,29 @@
+{
+  "name": "kafka-katas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "kafka:up": "docker compose up -d",
+    "kafka:down": "docker compose down -v",
+    "topics": "tsx scripts/create-topics.ts",
+    "smoke": "tsx src/kata0/smoke.ts",
+    "kata1:produce": "tsx src/kata1/producer.ts",
+    "kata1:consume": "tsx src/kata1/consumer.ts",
+    "kata2": "tsx src/kata2/matcher.ts",
+    "kata3": "tsx src/kata3/matcher-with-retries.ts",
+    "kata4": "tsx src/kata4/lifecycle.ts",
+    "kata5": "tsx src/kata5/onboarding.ts",
+    "seed": "tsx scripts/seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "kafkajs": "2.2.4",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "tsx": "4.16.2",
+    "typescript": "5.5.3"
+  }
+}
