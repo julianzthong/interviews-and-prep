@@ -8,8 +8,8 @@
  *
  * Watch the AI for: `as` casts, missing null checks, `any`.
  */
+import { assertNever, parseTaskEvent } from "../shared/events.js";
 import { makeKafka, onShutdown, TOPICS } from "../shared/kafka.js";
-import { parseTaskEvent } from "../shared/events.js";
 
 const consumer = makeKafka("kata1-consumer").consumer({ groupId: "kata1" });
 await consumer.connect();
@@ -23,7 +23,19 @@ await consumer.run({
       console.warn(`[p${partition} @${message.offset}] invalid:`, result.error);
       return;
     }
-    // TODO: exhaustive switch on result.event.type
-    console.log(`[p${partition} @${message.offset}]`, result.event);
+
+    switch (result.event.type) {
+      case "TaskPosted":
+        break;
+
+      case "TaskerAssigned":
+        break;
+
+      case "TaskCompleted":
+        break;
+
+      default:
+        assertNever(result.event);
+    }
   },
 });
